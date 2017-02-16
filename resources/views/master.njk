@@ -1,38 +1,144 @@
-<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!DOCTYPE html>
+<!--[if IE 9 ]><html class="ie9"><![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nargile Bars/Lounges/Cafes</title>
 
-  <title>AdonisJs - Node.Js MVC Framework</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;subset=greek" rel="stylesheet">
+    <!-- Vendor CSS -->
+    <link href="/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
+    <link href="/vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+    <link href="/vendors/bower_components/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+    <link href="/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+    <link href="/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">        
 
-  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,300,600,700,900' rel='stylesheet' type='text/css'>
-  <link rel="icon" href="/assets/favicon.png" type="image/x-icon">
-  <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
+    <!-- CSS -->
+    <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/custom.css" rel="stylesheet">
+    
+  </head>
+  <body>
+    <header id="header" class="clearfix bgm-indigo">
+      <ul class="h-inner clearfix">
+        <li class="hi-logo">
+          <a href="index.html">DISCOVER <strong>NARGILE BARS</strong></a>
+        </li>
+      </ul>
 
-  <section>
-    <div class="__wrapper">
-      {% block content %}{% endblock %}
+      <nav class="ha-menu">
+        <ul>
+          <li class="{% if page === 'welcome' %}active{% endif %}">
+            <a href="/">ΧΑΡΤΗΣ</a>
+          </li>
+          <li class="{% if page === 'bar' %}active{% endif %} dropdown">
+            <a href="" data-toggle="dropdown">ΚΑΤΑΣΤΗΜΑΤΑ</a>
 
-      {% block footer %}
-        <div class="__footer">
-          <ul>
+            <ul class="dropdown-menu scrollable">
+              {% for bar in bars %}
+                <li>
+                  <a href="{{ bar.slug() }}">
+                    {{ bar.get('title') }}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </li>
+          <li class="{% if page === 'discover' %}active{% endif %}">
+            <a href="/discover">ΑΝΑΚΑΛΥΨΕ</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <section id="main">
+
+      <section id="content" class="content-alt">
+        <div class="container">
+          {% block content %}{% endblock %}
+        </div>
+      </section>
+    </section>
+    
+    <footer id="footer">
+      Handcrafted with ♥ in Athens - &copy; 2017 Nargile Bars
+      
+      <ul class="f-menu">
+        <li><a href="">Home</a></li>
+        <li><a href="">Dashboard</a></li>
+        <li><a href="">Reports</a></li>
+        <li><a href="">Support</a></li>
+        <li><a href="">Contact</a></li>
+      </ul>
+    </footer>
+
+    <!-- Older IE warning message -->
+    <!--[if lt IE 9]>
+      <div class="ie-warning">
+        <h1 class="c-white">Warning!!</h1>
+        <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+        <div class="iew-container">
+          <ul class="iew-download">
             <li>
-              <a href="https://twitter.com/intent/tweet?url=http://adonisjs.com&text=I am using AdonisJs, a practical MVC framework for nodejs&hashtags=nodejs,adonisframework" target="_blank">
-                <img src="/assets/twitter.svg">
+              <a href="http://www.google.com/chrome/">
+                <img src="img/browsers/chrome.png" alt="">
+                <div>Chrome</div>
               </a>
             </li>
             <li>
-              <a href="https://github.com/adonisjs/adonis-framework" target="_blank"><img src="/assets/github.svg"></a>
+              <a href="https://www.mozilla.org/en-US/firefox/new/">
+                <img src="img/browsers/firefox.png" alt="">
+                <div>Firefox</div>
+              </a>
+            </li>
+            <li>
+              <a href="http://www.opera.com">
+                <img src="img/browsers/opera.png" alt="">
+                <div>Opera</div>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.apple.com/safari/">
+                <img src="img/browsers/safari.png" alt="">
+                <div>Safari</div>
+              </a>
+            </li>
+            <li>
+              <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                <img src="img/browsers/ie.png" alt="">
+                <div>IE (New)</div>
+              </a>
             </li>
           </ul>
         </div>
-      {% endblock %}
-    </div>
-  </section>
+        <p>Sorry for the inconvenience!</p>
+      </div>   
+    <![endif]-->
+    
+    <!-- Javascript Libraries -->
+    <script src="/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    
+    <script src="/vendors/bower_components/flot/jquery.flot.js"></script>
+    <script src="/vendors/bower_components/flot/jquery.flot.resize.js"></script>
+    <script src="/vendors/bower_components/flot.curvedlines/curvedLines.js"></script>
+    <script src="/vendors/sparklines/jquery.sparkline.min.js"></script>
+    <script src="/vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+    
+    <script src="/vendors/bower_components/moment/min/moment.min.js"></script>
+    <script src="/vendors/bower_components/fullcalendar/dist/fullcalendar.min.js "></script>
+    <script src="/vendors/bower_components/simpleWeather/jquery.simpleWeather.min.js"></script>
+    <script src="/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="/vendors/bower_components/Waves/dist/waves.min.js"></script>
+    <script src="/vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+    <script src="/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js"></script>
+    
+    <!-- Placeholder for IE9 -->
+    <!--[if IE 9 ]>
+      <script src="/vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+    <![endif]-->
 
-</body>
-</html>
+    <script src="js/app.js"></script>
+  </body>
+  </html>

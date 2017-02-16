@@ -4,8 +4,10 @@ const Bar = use('App/Model/Bar')
 
 class BarController {
   * index (request, response) {
-    const bars = yield Bar.all()
-    response.json(bars)
+    response.json({
+      status: 'ok',
+      data: yield Bar.all()
+    })
   }
 }
 
