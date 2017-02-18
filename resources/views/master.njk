@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Nargile Bars/Lounges/Cafes</title>
+    <title>{% if pageTitle %}{{ pageTitle }} - {% endif %}Nargile Bars &amp; Cafes</title>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;subset=greek" rel="stylesheet">
     <!-- Vendor CSS -->
@@ -23,7 +23,7 @@
     <header id="header" class="clearfix bgm-indigo">
       <ul class="h-inner clearfix">
         <li class="hi-logo">
-          <a href="index.html">DISCOVER <strong>NARGILE BARS</strong></a>
+          <a href="/">DISCOVER <strong>NARGILE BARS</strong></a>
         </li>
       </ul>
 
@@ -45,8 +45,8 @@
               {% endfor %}
             </ul>
           </li>
-          <li class="{% if page === 'discover' %}active{% endif %}">
-            <a href="/discover">ΑΝΑΚΑΛΥΨΕ</a>
+          <li class="{% if page === 'about' %}active{% endif %}">
+            <a href="/about">ΑΝΑΚΑΛΥΨΕ</a>
           </li>
         </ul>
       </nav>
@@ -62,14 +62,12 @@
     </section>
     
     <footer id="footer">
-      Handcrafted with ♥ in Athens - &copy; 2017 Nargile Bars
+      Handcrafted with ♥ in Athens &copy; 2017 Nargile Bars
       
       <ul class="f-menu">
-        <li><a href="">Home</a></li>
-        <li><a href="">Dashboard</a></li>
-        <li><a href="">Reports</a></li>
-        <li><a href="">Support</a></li>
-        <li><a href="">Contact</a></li>
+        <li><a href="/about">Ανακάλυψε τον Ναργιλέ</a></li>
+        <li>-</li>
+        <li><a href="/contact">Επικοινωνία</a></li>
       </ul>
     </footer>
 
@@ -139,6 +137,6 @@
       <script src="/vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
     <![endif]-->
 
-    <script src="js/app.js"></script>
+    <script src="/js/app.js"></script>
   </body>
   </html>

@@ -38,7 +38,7 @@
             center: p_mapcenter,
             scrollwheel: false,
             mapTypeControlOptions: {
-                 mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'tehgrayz']
+                mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'tehgrayz']
             }
         }
 
@@ -48,11 +48,11 @@
         map.mapTypes.set('tehgrayz', mapType);
         map.setMapTypeId('tehgrayz');
 
-        @foreach($stores as $store)
-            var w_{{ $store['key'] }} = new google.maps.InfoWindow({
-                content: document.getElementById('content_{{ $store['key'] }}').innerHTML, maxWidth: 500
-            });
-        @endforeach
+        // @foreach($stores as $store)
+        //     var w_{{ $store['key'] }} = new google.maps.InfoWindow({
+        //         content: document.getElementById('content_{{ $store['key'] }}').innerHTML, maxWidth: 500
+        //     });
+        // @endforeach
 
         @foreach($stores as $store)
             var m_{{ $store['key'] }} = new google.maps.Marker({
@@ -63,16 +63,16 @@
             });
         @endforeach
 
-        @foreach($stores as $store)
-            google.maps.event.addListener(m_{{ $store['key'] }}, 'click', function() {
+        // @foreach($stores as $store)
+        //     google.maps.event.addListener(m_{{ $store['key'] }}, 'click', function() {
 
-                @foreach($stores as $row)
-                    if (w_{{ $row['key'] }}) { w_{{ $row['key'] }}.close() }
-                @endforeach
+        //         @foreach($stores as $row)
+        //             if (w_{{ $row['key'] }}) { w_{{ $row['key'] }}.close() }
+        //         @endforeach
 
-                w_{{ $store['key'] }}.open(map, m_{{ $store['key'] }});
-            });
-        @endforeach
+        //         w_{{ $store['key'] }}.open(map, m_{{ $store['key'] }});
+        //     });
+        // @endforeach
 
     }
 

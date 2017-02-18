@@ -3,7 +3,90 @@
 {% block content %}
   <div class="card">
     <div class="card-body">
-      hi
+      <div id="map" class="allmap"></div>
+
+      {% for bar in bars %}
+        <div id="content_{{ bar.get('_id') }}" class="iw-wrap">
+          <a href="{{ bar.slug() }}" class="iw-link">
+            <span class="iw-title">{{ bar.get('title') }}</span>
+          </a>
+        </div>
+      {% endfor %}
+    
+      <script>
+        function initMap() {
+          var infowindow = null;
+          var stylez = [
+            {
+              featureType: "",
+              elementType: "",
+              stylers: [
+                { saturation: -100 }
+              ]
+            }
+          ];
+
+          var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 11,
+            center: new google.maps.LatLng(37.983022, 23.720169),
+            scrollwheel: false,
+            mapTypeControlOptions: {
+              mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'tehgrayz']
+            }
+          });
+
+          var mapType = new google.maps.StyledMapType(stylez, { name:"Grayscale" });
+          map.mapTypes.set('tehgrayz', mapType);
+          map.setMapTypeId('tehgrayz');
+
+          {% for bar in bars %}
+            var marker = new google.maps.Marker({
+              position: {
+                lat: {{ bar.get('position.latitude') | float }},
+                lng: {{ bar.get('position.longitude') | float }},
+              },
+              map: map,
+              icon: '/img/pin.png',
+              barId: '{{ bar.get('_id') }}',
+              slug: '{{ bar.slug() }}',
+            });
+
+            marker.addListener('click', function() {
+              // map.setZoom(16);
+              // map.setCenter(this.getPosition());
+              // window.location.replace(this.slug);
+              if (infowindow) {
+                infowindow.close();
+              }
+
+              infowindow = new google.maps.InfoWindow({
+                content: document.getElementById('content_'+this.barId).innerHTML, maxWidth: 200
+              });
+
+              infowindow.open(map, this);
+            });
+          {% endfor %}
+        }
+      </script>
+      <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ googleMapsKey }}&callback=initMap"></script>
+    </div>
+  </div>
+
+
+  <div class="card">
+    <div class="card-header">
+      <h2>Όλα τα καταστήματα</h2>
+    </div>
+    <div class="card-body card-padding">
+      <ul class="list-multicolumn">
+        {% for bar in bars %}
+          <li>
+            <a href="{{ bar.slug() }}">
+              {{ bar.get('title') }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
     </div>
   </div>
 {% endblock %}

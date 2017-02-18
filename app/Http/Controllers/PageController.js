@@ -1,6 +1,7 @@
 'use strict'
 
 const Bar = use('App/Model/Bar')
+const Config = use('Config')
 
 class PageController {
   * welcome (request, response) {
@@ -9,7 +10,8 @@ class PageController {
 
     yield response.sendView('welcome', {
       page: 'welcome',
-      bars: bars
+      bars: bars,
+      googleMapsKey: Config.get('googlemaps.key')
     })
   }
 
@@ -24,14 +26,16 @@ class PageController {
 
     yield response.sendView('bar', {
       page: 'bar',
+      pageTitle: bar.get('title'),
       bar: bar,
-      bars: yield Bar.all()
+      bars: yield Bar.all(),
+      googleMapsKey: Config.get('googlemaps.key')
     })
   }
 
-  * discover (request, response) {
-    yield response.sendView('discover', {
-      page: 'discover',
+  * about (request, response) {
+    yield response.sendView('about', {
+      page: 'about',
       bars: yield Bar.all()
     })
   }

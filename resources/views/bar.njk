@@ -2,8 +2,69 @@
 
 {% block content %}
   <div class="card">
+    <div class="card-header">
+      <h2>{{ bar.get('title') }}<small>{{ bar.address() }}</small></h2>
+
+      <a class="btn bgm-indigo btn-float waves-effect" target="_blank" href="{{ bar.directions() }}">
+        <i class="zmdi zmdi-directions"></i>
+      </a>
+    </div>
     <div class="card-body">
-      {{ bar.get('title') }}
+      <div id="map" class="singlemap"></div>
+      <script>
+        function initMap() {
+          var stylez = [
+            {
+              featureType: "",
+              elementType: "",
+              stylers: [
+                { saturation: -100 }
+              ]
+            }
+          ];
+          var position = {
+            lat: {{ bar.get('position.latitude') | float }},
+            lng: {{ bar.get('position.longitude') | float }},
+          }
+          console.log(position);
+          var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: position,
+            scrollwheel: false,
+            mapTypeControlOptions: {
+              mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'tehgrayz']
+            }
+          });
+
+          var mapType = new google.maps.StyledMapType(stylez, { name:"Grayscale" });
+          map.mapTypes.set('tehgrayz', mapType);
+          map.setMapTypeId('tehgrayz');
+
+          var marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            icon: '/img/pin.png'
+          });
+        }
+      </script>
+      <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ googleMapsKey }}&callback=initMap"></script>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2>Περισσότερα καταστήματα</h2>
+    </div>
+    <div class="card-body card-padding">
+      <ul class="list-multicolumn">
+        {% for bar in bars %}
+          <li>
+            <a href="{{ bar.slug() }}">
+              {{ bar.get('title') }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
     </div>
   </div>
 {% endblock %}

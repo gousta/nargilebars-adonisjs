@@ -6,8 +6,8 @@ const Route = use('Route')
  * General
  */
 Route.get('/', 'PageController.welcome');
-Route.get('/bars/:region/:area/:key', 'PageController.bar');
-Route.get('/discover', 'PageController.discover');
+Route.get('/discover/:region/:area/:key', 'PageController.bar');
+Route.get('/about', 'PageController.about');
 
 
 /**
