@@ -3,12 +3,18 @@
 {% block content %}
   <div class="card">
     <div class="card-header">
-      <h2>{{ bar.get('title') }}<small>{{ bar.address() }}</small></h2>
+      <h2>{{ bar.get('title') }}
+        <small>
+          <i class="zmdi zmdi-pin"></i> &nbsp;{{ bar.address() }}<br/>
+          <i class="zmdi zmdi-phone"></i> <a href="tel:{{ bar.get('phone') }}">{{ bar.get('phone') }}</a>
+        </small>
+      </h2>
 
       <a class="btn bgm-indigo btn-float waves-effect" target="_blank" href="{{ bar.directions() }}">
         <i class="zmdi zmdi-directions"></i>
       </a>
     </div>
+
     <div class="card-body">
       <div id="map" class="singlemap"></div>
       <script>
