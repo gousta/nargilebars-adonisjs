@@ -5,12 +5,9 @@ const Config = use('Config')
 
 class PageController {
   * welcome (request, response) {
-    const bars = yield Bar.all()
-    console.log(bars)
-
     yield response.sendView('welcome', {
       page: 'welcome',
-      bars: bars,
+      bars: yield Bar.all(),
       googleMapsKey: Config.get('googlemaps.key')
     })
   }
