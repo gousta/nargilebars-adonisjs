@@ -40,6 +40,9 @@ ul.list-multicolumn li a {
     line-height: 30px;
     display: block;
     font-size: 13px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 ul.list-multicolumn li a:hover { color: #555; }
@@ -56,5 +59,13 @@ ul.list-multicolumn li a:hover { color: #555; }
         -webkit-column-count: 2;
         -moz-column-count: 2;
         column-count: 2;
+    }
+}
+
+#header {}
+
+@media(max-width: 767px) {
+    #header {
+        padding: 0;
     }
 }

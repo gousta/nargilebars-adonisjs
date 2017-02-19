@@ -36,6 +36,22 @@ class PageController {
       bars: yield Bar.all()
     })
   }
+
+  * contact (request, response) {
+    yield response.sendView('contact', {
+      page: 'contact',
+      bars: yield Bar.all()
+    })
+  }
+
+  * contactDo (request, response) {
+    console.log(request.all());
+    yield response.sendView('contact', {
+      page: 'contact',
+      bars: yield Bar.all(),
+      message: 'Το μήνυμα σας στάλθηκε. Θα προσπαθήσουμε να απαντήσουμε εντός μιας εβδομάδας.'
+    })
+  }
 }
 
 module.exports = PageController

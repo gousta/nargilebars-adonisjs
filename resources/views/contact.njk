@@ -1,0 +1,47 @@
+{% extends 'master' %}
+
+{% block content %}
+  {{ form.open({action: 'PageController.contactDo'}) }}
+    {{ csrfField }}
+    
+    <div class="card">
+      <div class="card-header ch-alt m-b-20">
+        <h2>Επικοινωνία</h2>
+        <button class="btn bgm-blue btn-float waves-effect"><i class="zmdi zmdi-mail-send"></i></button>
+      </div>
+
+      <div class="card-body card-padding">
+
+        <div class="row">
+          <div class="col-sm-4">
+            <p>Λείπει κάποιο κατάστημα;</p>
+            <p>Κάποια πληροφορία καταστήματος είναι λάθος;</p>
+            <p>Θέλετε να πείτε απλά γειά;</p>
+          </div>
+
+          <div class="col-sm-8">
+
+            <div class="form-group fg-float m-b-30">
+              <div class="fg-line">
+                <input type="email" name="email" class="form-control fg-input" placeholder="" autocapitalize="none" required="required">
+                <label class="fg-label">Email</label>
+              </div>
+            </div>
+            <div class="form-group fg-float m-b-30">
+              <div class="fg-line">
+                <textarea name="message" class="form-control fg-input" rows="5" placeholder="" required="required"></textarea>
+                <label class="fg-label">Μήνυμα</label>
+              </div>
+            </div>
+
+            {% if message %}
+            <div class="alert alert-success">{{ message }}</div>
+            {% endif %}
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  {{ form.close() }}
+{% endblock %}

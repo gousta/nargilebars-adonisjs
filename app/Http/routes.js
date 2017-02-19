@@ -8,6 +8,8 @@ const Route = use('Route')
 Route.get('/', 'PageController.welcome');
 Route.get('/discover/:region/:area/:key', 'PageController.bar');
 Route.get('/about', 'PageController.about');
+Route.get('/contact', 'PageController.contact');
+Route.post('/contact', 'PageController.contactDo');
 
 
 /**
