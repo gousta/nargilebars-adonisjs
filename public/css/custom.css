@@ -1,3 +1,13 @@
+
+.h-inner {
+  padding: 14px 0;
+}
+@media(max-width: 767px) {
+  .h-inner {
+    padding: 10px 2px 7px;
+  }
+}
+
 .f-mono { font-family: monospace; }
 
 .iw-wrap { display: none; }
@@ -14,7 +24,7 @@
 }
 
 .singlemap {
-  height: 300px;
+  height: 400px;
 }
 
 .scrollable {
@@ -23,8 +33,8 @@
 }
 
 ul.list-multicolumn {
-  padding: 0;
   margin: 0;
+  padding:0;
   -webkit-column-count: 4;
   -moz-column-count: 4;
   column-count: 4;
@@ -36,21 +46,31 @@ ul.list-multicolumn:after {
 
 ul.list-multicolumn li {
   list-style: none;
+  margin: 0 -10px 0 -10px;
 }
 
 ul.list-multicolumn li a {
   margin: 0;
-  padding: 0;
-  height: 30px;
-  line-height: 30px;
+  padding: 0 10px;
+  height: 40px;
+  line-height: 40px;
   display: block;
-  font-size: 13px;
+  font-size: 14px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  color: #888888;
+}
+@media(max-width: 767px) {
+  ul.list-multicolumn li a {
+    font-size: 15px;
+  }
 }
 
-ul.list-multicolumn li a:hover { color: #555; }
+ul.list-multicolumn li a:hover {
+  color: #555;
+  background: rgba(0,0,0,0.05);
+}
 
 @media(max-width: 1200px) {
   ul.list-multicolumn {
