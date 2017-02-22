@@ -274,7 +274,7 @@ $(document).ready(function () {
             barSpacing: barSpacing
         })
     }
-    
+
     function sparklineLine(id, values, width, height, lineColor, fillColor, lineWidth, maxSpotColor, minSpotColor, spotColor, spotRadius, hSpotColor, hLineColor) {
         $('.'+id).sparkline(values, {
             type: 'line',
@@ -291,7 +291,7 @@ $(document).ready(function () {
             highlightLineColor: hLineColor
         });
     }
-    
+
     function sparklinePie(id, values, width, height, sliceColors) {
         $('.'+id).sparkline(values, {
             type: 'pie',
@@ -301,33 +301,33 @@ $(document).ready(function () {
             offset: 0,
             borderWidth: 0
         });
-    }    
-    
+    }
+
     /* Mini Chart - Bar Chart 1 */
     if ($('.stats-bar')[0]) {
         sparklineBar('stats-bar', [6,4,8,6,5,6,7,8,3,5,9,5,8,4], '35px', 3, '#fff', 2);
     }
-    
+
     /* Mini Chart - Bar Chart 2 */
     if ($('.stats-bar-2')[0]) {
         sparklineBar('stats-bar-2', [4,7,6,2,5,3,8,6,6,4,8,6,5,8], '35px', 3, '#fff', 2);
     }
-    
+
     /* Mini Chart - Line Chart 1 */
     if ($('.stats-line')[0]) {
         sparklineLine('stats-line', [9,4,6,5,6,4,5,7,9,3,6,5], 68, 35, '#fff', 'rgba(0,0,0,0)', 1.25, 'rgba(255,255,255,0.4)', 'rgba(255,255,255,0.4)', 'rgba(255,255,255,0.4)', 3, '#fff', 'rgba(255,255,255,0.4)');
     }
-    
+
     /* Mini Chart - Line Chart 2 */
     if ($('.stats-line-2')[0]) {
         sparklineLine('stats-line-2', [5,6,3,9,7,5,4,6,5,6,4,9], 68, 35, '#fff', 'rgba(0,0,0,0)', 1.25, 'rgba(255,255,255,0.4)', 'rgba(255,255,255,0.4)', 'rgba(255,255,255,0.4)', 3, '#fff', 'rgba(255,255,255,0.4)');
     }
-    
+
     /* Mini Chart - Pie Chart 1 */
     if ($('.stats-pie')[0]) {
         sparklinePie('stats-pie', [20, 35, 30, 5], 45, 45, ['#fff', 'rgba(255,255,255,0.7)', 'rgba(255,255,255,0.4)', 'rgba(255,255,255,0.2)']);
     }
-    
+
     /* Dash Widget Line Chart */
     if ($('.dash-widget-visits')[0]) {
         sparklineLine('dash-widget-visits', [9,4,6,5,6,4,5,7,9,3,6,5], '100%', '70px', 'rgba(255,255,255,0.7)', 'rgba(0,0,0,0)', 2, '#fff', '#fff', '#fff', 5, 'rgba(255,255,255,0.4)', 'rgba(255,255,255,0.1)');
@@ -348,17 +348,17 @@ $(document).ready(function () {
             size: size
         });
     }
-    
+
     /* Main Pie Chart */
     if ($('.main-pie')[0]) {
         easyPieChart('main-pie', 'rgba(255,255,255,0.2)', 'rgba(255,255,255,0)', 'rgba(255,255,255,0.7)', 2, 'butt', 148);
     }
-    
+
     /* Others */
     if ($('.sub-pie-1')[0]) {
         easyPieChart('sub-pie-1', 'rgba(255,255,255,0.2)', 'rgba(255,255,255,0)', 'rgba(255,255,255,0.7)', 2, 'butt', 90);
     }
-    
+
     if ($('.sub-pie-2')[0]) {
         easyPieChart('sub-pie-2', 'rgba(255,255,255,0.2)', 'rgba(255,255,255,0)', 'rgba(255,255,255,0.7)', 2, 'butt', 90);
     }
@@ -399,7 +399,7 @@ $(document).ready(function(){
     var data1 = [[1,60], [2,30], [3,50], [4,100], [5,10], [6,90], [7,85]];
     var data2 = [[1,20], [2,90], [3,60], [4,40], [5,100], [6,25], [7,65]];
     var data3 = [[1,100], [2,20], [3,60], [4,90], [5,80], [6,10], [7,5]];
-    
+
     // Create an Array push the data + Draw the bars
 
     var barData = [
@@ -440,7 +440,7 @@ $(document).ready(function(){
                 hoverable : true,
                 clickable : true
             },
-            
+
             yaxis: {
                 tickColor: '#eee',
                 tickDecimals: 0,
@@ -451,7 +451,7 @@ $(document).ready(function(){
                 },
                 shadowSize: 0
             },
-            
+
             xaxis: {
                 tickColor: '#fff',
                 tickDecimals: 0,
@@ -462,7 +462,7 @@ $(document).ready(function(){
                 },
                 shadowSize: 0,
             },
-    
+
             legend:{
                 container: '.flc-bar',
                 backgroundOpacity: 0.5,
@@ -487,7 +487,7 @@ $(document).ready(function(){
                 $(".flot-tooltip").hide();
             }
         });
-        
+
         $("<div class='flot-tooltip' class='chart-tooltip'></div>").appendTo("body");
     }
 });
@@ -503,7 +503,7 @@ $(document).ready(function(){
     var d2 = [];
     for (var i = 0; i <= 20; i += 1) {
         d2.push([i, parseInt(Math.random() * 30)]);
-    }    
+    }
     var d3 = [];
     for (var i = 0; i <= 10; i += 1) {
         d3.push([i, parseInt(Math.random() * 30)]);
@@ -532,18 +532,18 @@ $(document).ready(function(){
             hoverable: true,
             clickable: true,
             mouseActiveRadius:6,
-            
+
         },
         xaxis: {
             tickDecimals: 0,
             ticks: false
         },
-        
+
         yaxis: {
             tickDecimals: 0,
             ticks: false
         },
-        
+
         legend: {
             show: false
         }
@@ -573,7 +573,7 @@ $(document).ready(function(){
                 $(".flot-tooltip").hide();
             }
         });
-        
+
         $("<div class='flot-tooltip' class='chart-tooltip'></div>").appendTo("body");
     }
 });
@@ -1026,13 +1026,13 @@ $(document).ready(function(){
     var data = [];
     var totalPoints = 300;
     var updateInterval = 30;
-    
+
     function getRandomData() {
         if (data.length > 0)
             data = data.slice(1);
 
         while (data.length < totalPoints) {
-    
+
             var prev = data.length > 0 ? data[data.length - 1] : 50,
                 y = prev + Math.random() * 10 - 5;
             if (y < 0) {
@@ -1064,7 +1064,7 @@ $(document).ready(function(){
                     lineWidth: 0.2,
                     fill: 0.6
                 },
-    
+
                 color: '#00BCD4',
                 shadowSize: 0,
             },
@@ -1078,7 +1078,7 @@ $(document).ready(function(){
                     color: "#9f9f9f",
                 },
                 shadowSize: 0,
-    
+
             },
             xaxis: {
                 tickColor: '#eee',
@@ -1126,13 +1126,13 @@ $(document).ready(function(){
     var data = [];
     var totalPoints = 100;
     var updateInterval = 30;
-    
+
     function getRandomData() {
         if (data.length > 0)
             data = data.slice(1);
 
         while (data.length < totalPoints) {
-    
+
             var prev = data.length > 0 ? data[data.length - 1] : 50,
                 y = prev + Math.random() * 10 - 5;
             if (y < 0) {
@@ -1155,7 +1155,7 @@ $(document).ready(function(){
     /*---------------------------------------------------
         Make some random data for Flot Line Chart
     ---------------------------------------------------*/
-    
+
     var d1 = [];
     for (var i = 0; i <= 10; i += 1) {
         d1.push([i, parseInt(Math.random() * 30)]);
@@ -1163,7 +1163,7 @@ $(document).ready(function(){
     var d2 = [];
     for (var i = 0; i <= 20; i += 1) {
         d2.push([i, parseInt(Math.random() * 30)]);
-    }    
+    }
     var d3 = [];
     for (var i = 0; i <= 10; i += 1) {
         d3.push([i, parseInt(Math.random() * 30)]);
@@ -1186,18 +1186,18 @@ $(document).ready(function(){
             hoverable: true,
             clickable: true,
             mouseActiveRadius:6,
-            
+
         },
         xaxis: {
             tickDecimals: 0,
             ticks: false
         },
-        
+
         yaxis: {
             tickDecimals: 0,
             ticks: false
         },
-        
+
         legend: {
             show: false
         }
@@ -1238,7 +1238,7 @@ $(document).ready(function(){
                 $(".flot-tooltip").hide();
             }
         });
-        
+
         $("<div class='flot-tooltip' class='chart-tooltip'></div>").appendTo("body");
     }
 });
@@ -1260,7 +1260,7 @@ $(document).ready(function(){
             series: {
                 pie: {
                     show: true,
-                    stroke: { 
+                    stroke: {
                         width: 2,
                     },
                 },
@@ -1286,7 +1286,7 @@ $(document).ready(function(){
                 defaultTheme: false,
                 cssClass: 'flot-tooltip'
             }
-            
+
         });
     }
 
@@ -1299,7 +1299,7 @@ $(document).ready(function(){
                 pie: {
                     innerRadius: 0.5,
                     show: true,
-                    stroke: { 
+                    stroke: {
                         width: 2,
                     },
                 },
@@ -1325,7 +1325,7 @@ $(document).ready(function(){
                 defaultTheme: false,
                 cssClass: 'flot-tooltip'
             }
-            
+
         });
     }
 });
@@ -1333,10 +1333,14 @@ $(document).ready(function(){
     Detect Mobile Browser
 -----------------------------------------------------------*/
 if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-   $('html').addClass('ismobile');
+  $('html').addClass('ismobile');
 }
 
 $(document).ready(function(){
+
+    $('body').on('click', '.new_window', function(e){
+        window.open(e.target.href, '_blank');
+    });
 
     /*----------------------------------------------------------
         Scrollbar
