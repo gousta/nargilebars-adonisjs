@@ -61,7 +61,7 @@ class Sync extends Command {
         yield bar.save()
       }
     }
-    
+
     Mongorito.disconnect()
 
     this.info(`Finished syncing data.`)

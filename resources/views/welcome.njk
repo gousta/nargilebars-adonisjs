@@ -12,7 +12,7 @@
           </a>
         </div>
       {% endfor %}
-    
+
       <script>
         function initMap() {
           var infowindow = null;
@@ -46,7 +46,10 @@
                 lng: {{ bar.get('position.longitude') | float }},
               },
               map: map,
-              icon: '/img/pin.png',
+              icon: {
+                url: '/img/pin.png',
+                scaledSize: new google.maps.Size(36, 36),
+              },
               barId: '{{ bar.get('_id') }}',
               slug: '{{ bar.slug() }}',
             });

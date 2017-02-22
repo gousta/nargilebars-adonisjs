@@ -49,7 +49,10 @@
           var marker = new google.maps.Marker({
             position: position,
             map: map,
-            icon: '/img/pin.png'
+            icon: {
+              url: '/img/pin.png',
+              scaledSize: new google.maps.Size(36, 36),
+            },
           });
         }
       </script>
