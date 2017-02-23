@@ -1338,8 +1338,11 @@ if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 
 $(document).ready(function(){
 
-    $('body').on('click', '.new_window', function(e){
-        window.open(e.target.href, '_blank');
+    $('body').on('click', '.new_window', function(e) {
+        if (!$('html').hasClass('ismobile')) {
+          e.preventDefault();
+          window.open($(this).attr('href'), '_blank');
+        }
     });
 
     /*----------------------------------------------------------
