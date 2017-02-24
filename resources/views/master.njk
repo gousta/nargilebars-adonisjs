@@ -2,7 +2,15 @@
 <!--[if IE 9 ]><html class="ie9"><![endif]-->
   <head>
     <meta charset="utf-8">
+
     <title>{% if pageTitle %}{{ pageTitle }} - {% endif %}Nargile Bars &amp; Cafes</title>
+
+    {% if pageDescription %}
+      <meta name="description" content="{{ pageDescription }}">
+    {% else %}
+      <meta name="description" content="Nargile Bars, Lounges &amp; Cafe's ή κοινώς Ναργιλεδάδικα!">
+    {% endif %}
+
 
     <!-- Mobile Opts -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,12 +39,12 @@
     <link href="/vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
     <link href="/vendors/bower_components/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
     <link href="/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
-    <link href="/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">        
+    <link href="/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">
 
     <!-- CSS -->
     <link href="/css/app.css" rel="stylesheet">
     <link href="/css/custom.css" rel="stylesheet">
-    
+
   </head>
   <body>
     <header id="header" class="clearfix bgm-indigo">
@@ -79,10 +87,10 @@
         </div>
       </section>
     </section>
-    
+
     <footer id="footer">
       Handcrafted with ♥ in Athens &copy; 2017 Nargile Bars
-      
+
       <ul class="f-menu">
         <li><a href="/about">Ανακάλυψε τον Ναργιλέ</a></li>
         <li>-</li>
@@ -130,19 +138,19 @@
           </ul>
         </div>
         <p>Sorry for the inconvenience!</p>
-      </div>   
+      </div>
     <![endif]-->
-    
+
     <!-- Javascript Libraries -->
     <script src="/vendors/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    
+
     <script src="/vendors/bower_components/flot/jquery.flot.js"></script>
     <script src="/vendors/bower_components/flot/jquery.flot.resize.js"></script>
     <script src="/vendors/bower_components/flot.curvedlines/curvedLines.js"></script>
     <script src="/vendors/sparklines/jquery.sparkline.min.js"></script>
     <script src="/vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
-    
+
     <script src="/vendors/bower_components/moment/min/moment.min.js"></script>
     <script src="/vendors/bower_components/fullcalendar/dist/fullcalendar.min.js "></script>
     <script src="/vendors/bower_components/simpleWeather/jquery.simpleWeather.min.js"></script>
@@ -150,7 +158,7 @@
     <script src="/vendors/bower_components/Waves/dist/waves.min.js"></script>
     <script src="/vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
     <script src="/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js"></script>
-    
+
     <!-- Placeholder for IE9 -->
     <!--[if IE 9 ]>
       <script src="/vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>

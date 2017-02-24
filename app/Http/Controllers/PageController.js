@@ -23,7 +23,8 @@ class PageController {
 
     yield response.sendView('bar', {
       page: 'bar',
-      pageTitle: bar.get('title'),
+      pageTitle: `${bar.get('title')} @ ${bar.get('address.area')}`,
+      pageDescription: `Κατάστημα ${bar.get('title')}, ${bar.address()} - Ναργιλεδάδικα, Cafes, Bars, Lounges`,
       bar: bar,
       bars: yield Bar.all(),
       googleMapsKey: Config.get('googlemaps.key')
