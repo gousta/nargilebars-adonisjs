@@ -1,0 +1,17 @@
+{% extends 'master' %}
+
+{% block content %}
+  <div class="__banner">
+    <div class="banner__inner">
+      <h1>{{ error.status }}</h1>
+
+      {% if error.status == 404 %}
+        <p>Η σελίδα που ζητήσατε δεν υπάρχει.</p>
+      {% else %}
+        <p>Πρόβλημα στη φόρτωση της σελίδας.</p>
+      {% endif %}
+
+      <a href="/">Πίσω στην κεντρική</a></p>
+    </div>
+  </div>
+{% endblock %}

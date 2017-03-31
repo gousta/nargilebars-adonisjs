@@ -19,5 +19,5 @@ Route.group('api_v1', function () {
 
   Route.get('/bar', 'Apiv1/BarController.index');
 
-}).prefix('api/v1')
+}).prefix('api')
 
