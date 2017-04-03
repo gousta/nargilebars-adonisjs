@@ -6,7 +6,9 @@
       <h2>{{ bar.get('title') }}
         <small>
           <i class="zmdi zmdi-pin"></i> &nbsp;{{ bar.address() }}<br/>
+          {% if bar.get('phone') %}
           <i class="zmdi zmdi-phone"></i> <a href="tel:{{ bar.get('phone') }}">{{ bar.get('phone') }}</a>
+          {% endif %}
         </small>
       </h2>
 
@@ -32,7 +34,7 @@
             lat: {{ bar.get('position.latitude') | float }},
             lng: {{ bar.get('position.longitude') | float }},
           }
-          console.log(position);
+          // console.log(position);
           var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 15,
             center: position,
