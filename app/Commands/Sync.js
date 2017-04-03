@@ -36,6 +36,8 @@ class Sync extends Command {
    * @param  {Object} options [description]
    */
   * handle (args, options) {
+    let newBars = 0;
+
     this.info(`Requesting ${args.url}`)
 
     const response = yield got(args.url)
@@ -51,20 +53,24 @@ class Sync extends Command {
       charmap: slug.charmap
     }
 
-    for(let row of res.data) {
-      row.slug = `${slug(row.address.region, s)}/${slug(row.address.area, s)}/${slug(row.title, s)}`.toLowerCase();
+    this.info(`Identified ${res.data.length} bars`)
 
-      const bar = yield Bar.where('key', row.key).findOne();
+    for(let bar of res.data) {
+      bar.slug = `${slug(bar.address.region, s)}/${slug(bar.address.area, s)}/${slug(bar.title, s)}`.toLowerCase();
 
-      if(!bar) {
-        const bar = new Bar(row)
-        yield bar.save()
+      const barCheck = yield Bar.where('key', bar.key).findOne();
+
+      if(!barCheck) {
+        newBars++
+        const newBar = new Bar(bar)
+        yield newBar.save()
       }
     }
 
     Mongorito.disconnect()
 
-    this.info(`Finished syncing data.`)
+    this.info(`Added ${newBars} new bars`)
+    this.info(`Finished syncing data`)
   }
 
 }
