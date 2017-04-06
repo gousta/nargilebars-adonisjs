@@ -6,8 +6,9 @@
       <h2>{{ bar.get('title') }}
         <small>
           <i class="zmdi zmdi-pin"></i> &nbsp;{{ bar.address() }}<br/>
+
           {% if bar.get('phone') %}
-          <i class="zmdi zmdi-phone"></i> <a href="tel:{{ bar.get('phone') }}">{{ bar.get('phone') }}</a>
+          <i class="zmdi zmdi-phone"></i> &nbsp;<a href="tel:{{ bar.get('phone') }}">{{ bar.get('phone') }}</a>
           {% endif %}
         </small>
       </h2>
