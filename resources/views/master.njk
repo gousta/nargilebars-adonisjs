@@ -60,35 +60,54 @@
 
 
     <header id="header" class="clearfix bgm-indigo">
-      <ul class="h-inner clearfix">
-        <li class="hi-logo">
+      <ul class="h-inner">
+        <!-- <li class="hi-trigger ma-trigger" data-ma-action="sidebar-open" data-ma-target="#sidebar">
+          <div class="line-wrap">
+            <div class="line top"></div>
+            <div class="line center"></div>
+            <div class="line bottom"></div>
+          </div>
+        </li> -->
+        <li class="hi-logo hidden-xs">
           <a href="/">DISCOVER <strong>NARGILE BARS</strong></a>
         </li>
+        <li class="hi-logo visible-xs">
+          <a href="/"><strong>NARGILE</strong> BARS</a>
+        </li>
+
+        <li class="pull-right">
+          <ul class="hi-menu">
+            <li class="{% if page === 'welcome' %}active{% endif %}">
+              <a href="/">
+                <i class="him-icon zmdi zmdi-map visible-xs"></i>
+                <span class="him-label hidden-xs">ΧΑΡΤΗΣ</span>
+              </a>
+            </li>
+            <li class="{% if page === 'bar' %}active{% endif %} dropdown">
+              <a href="" data-toggle="dropdown">
+                <i class="him-icon zmdi zmdi-store visible-xs"></i>
+                <span class="him-label hidden-xs">ΚΑΤΑΣΤΗΜΑΤΑ</span>
+              </a>
+
+              <ul class="dropdown-menu scrollable">
+                {% for bar in bars %}
+                  <li>
+                    <a href="{{ bar.slug() }}">
+                      {{ bar.get('title') }}
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </li>
+            <li class="{% if page === 'about' %}active{% endif %}">
+              <a href="/about">
+                <i class="him-icon zmdi zmdi-local-library visible-xs"></i>
+                <span class="him-label hidden-xs">ΑΝΑΚΑΛΥΨΕ</span>
+              </a>
+            </li>
+          </ul>
+        </li>
       </ul>
-
-      <nav class="ha-menu">
-        <ul>
-          <li class="{% if page === 'welcome' %}active{% endif %}">
-            <a href="/">ΧΑΡΤΗΣ</a>
-          </li>
-          <li class="{% if page === 'bar' %}active{% endif %} dropdown">
-            <a href="" data-toggle="dropdown">ΚΑΤΑΣΤΗΜΑΤΑ</a>
-
-            <ul class="dropdown-menu scrollable">
-              {% for bar in bars %}
-                <li>
-                  <a href="{{ bar.slug() }}">
-                    {{ bar.get('title') }}
-                  </a>
-                </li>
-              {% endfor %}
-            </ul>
-          </li>
-          <li class="{% if page === 'about' %}active{% endif %}">
-            <a href="/about">ΑΝΑΚΑΛΥΨΕ</a>
-          </li>
-        </ul>
-      </nav>
     </header>
 
     <section id="main">
