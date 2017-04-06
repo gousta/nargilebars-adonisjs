@@ -11,7 +11,6 @@
   }
 }
 
-
 .h-inner {
   padding: 17px 0;
 }
@@ -92,11 +91,18 @@ ul.list-multicolumn li a:hover {
     column-count: 3;
   }
 }
-@media(max-width: 768px) {
+@media(max-width: 992px) {
   ul.list-multicolumn {
     -webkit-column-count: 2;
     -moz-column-count: 2;
     column-count: 2;
+  }
+}
+@media(max-width: 768px) {
+  ul.list-multicolumn {
+    -webkit-column-count: 1;
+    -moz-column-count: 1;
+    column-count: 1;
   }
 }
 
@@ -106,4 +112,8 @@ ul.list-multicolumn li a:hover {
   #header {
     padding: 0;
   }
+}
+
+.card .card-header h2 {
+
 }
