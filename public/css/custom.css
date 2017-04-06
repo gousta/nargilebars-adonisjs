@@ -16,7 +16,7 @@
 }
 @media(max-width: 767px) {
   .h-inner {
-    padding: 17px 5px;
+    padding: 18px 5px 17px;
   }
 }
 
