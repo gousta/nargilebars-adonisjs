@@ -1,14 +1,14 @@
-'use strict'
+"use strict";
 
-const Bar = use('App/Model/Bar')
+const Bar = use("App/Model/Bar");
 
 class BarController {
-  * index (request, response) {
+  *index(request, response) {
     response.json({
-      status: 'ok',
+      status: "ok",
       data: yield Bar.all()
-    })
+    });
   }
 }
 
-module.exports = BarController
+module.exports = BarController;

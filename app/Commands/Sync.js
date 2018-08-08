@@ -1,21 +1,20 @@
-'use strict'
+"use strict";
 
-const Command = use('Command')
-const got = use('got')
-const Bar = use('App/Model/Bar')
-const Mongorito = use('mongorito')
-const slug = use('slug')
+const Command = use("Command");
+const got = use("got");
+const Bar = use("App/Model/Bar");
+const Mongorito = use("mongorito");
+const slug = use("slug");
 
 class Sync extends Command {
-
   /**
    * signature defines the requirements and name
    * of command.
    *
    * @return {String}
    */
-  get signature () {
-    return 'sync {url}'
+  get signature() {
+    return "sync {url}";
   }
 
   /**
@@ -24,8 +23,8 @@ class Sync extends Command {
    *
    * @return {String}
    */
-  get description () {
-    return 'Sync bars from an external resource'
+  get description() {
+    return "Sync bars from an external resource";
   }
 
   /**
@@ -35,44 +34,46 @@ class Sync extends Command {
    * @param  {Object} args    [description]
    * @param  {Object} options [description]
    */
-  * handle (args, options) {
+  *handle(args, options) {
     let newBars = 0;
 
-    this.info(`Requesting ${args.url}`)
+    this.info(`Requesting ${args.url}`);
 
-    const response = yield got(args.url)
-    const res = JSON.parse(response.body)
+    const response = yield got(args.url);
+    const res = JSON.parse(response.body);
 
-    slug.charmap['Θ'] = 'TH'
-    slug.charmap['θ'] = 'th'
-    slug.charmap['Ξ'] = 'KS'
-    slug.charmap['ξ'] = 'ks'
+    slug.charmap["Θ"] = "TH";
+    slug.charmap["θ"] = "th";
+    slug.charmap["Ξ"] = "KS";
+    slug.charmap["ξ"] = "ks";
 
     const s = {
       lowercase: true,
       charmap: slug.charmap
-    }
+    };
 
-    this.info(`Identified ${res.data.length} bars`)
+    this.info(`Identified ${res.data.length} bars`);
 
-    for(let bar of res.data) {
-      bar.slug = `${slug(bar.address.region, s)}/${slug(bar.address.area, s)}/${slug(bar.title, s)}`.toLowerCase();
+    for (let bar of res.data) {
+      bar.slug = `${slug(bar.address.region, s)}/${slug(
+        bar.address.area,
+        s
+      )}/${slug(bar.title, s)}`.toLowerCase();
 
-      const barCheck = yield Bar.where('key', bar.key).findOne();
+      const barCheck = yield Bar.where("key", bar.key).findOne();
 
-      if(!barCheck) {
-        newBars++
-        const newBar = new Bar(bar)
-        yield newBar.save()
+      if (!barCheck) {
+        newBars++;
+        const newBar = new Bar(bar);
+        yield newBar.save();
       }
     }
 
-    Mongorito.disconnect()
+    Mongorito.disconnect();
 
-    this.info(`Added ${newBars} new bars`)
-    this.info(`Finished syncing data`)
+    this.info(`Added ${newBars} new bars`);
+    this.info(`Finished syncing data`);
   }
-
 }
 
-module.exports = Sync
+module.exports = Sync;
