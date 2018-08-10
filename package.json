@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
+    "deploy": "git pull origin master && pm2 restart server.js",
     "test": "node ace test"
   },
   "keywords": [
