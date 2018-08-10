@@ -5,8 +5,8 @@
   "description": "The fullstack application boilerplate for Adonisjs",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "deploy": "git pull origin master && pm2 restart server.js",
+    "start": "node nargilebars.js",
+    "deploy": "git pull origin master && pm2 restart nargilebars.js",
     "test": "node ace test"
   },
   "keywords": [
