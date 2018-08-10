@@ -7,7 +7,7 @@
 
       @each(bar in bars)
         <div id="content_{{ bar._id }}" class="iw-wrap">
-          <a href="{{ bar.slug }}" class="iw-link">
+          <a href="{{ bar.url() }}" class="iw-link">
             <span class="iw-title">{{ bar.title }}</span>
           </a>
         </div>
@@ -51,13 +51,10 @@
                 scaledSize: new google.maps.Size(36, 36),
               },
               barId: '{{ bar._id }}',
-              slug: '{{ bar.slug }}',
+              url: '{{ bar.url() }}',
             });
 
             marker.addListener('click', function() {
-              // map.setZoom(16);
-              // map.setCenter(this.getPosition());
-              // window.location.replace(this.slug);
               if (infowindow) {
                 infowindow.close();
               }
