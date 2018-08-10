@@ -1,9 +1,10 @@
-{% extends 'master' %}
+@layout('master')
 
-{% block content %}
-  {{ form.open({action: 'PageController.contactDo'}) }}
-    {{ csrfField }}
-    
+@section('content')
+  <form method="POST" action="/contact" enctype="application/x-www-form-urlencoded">
+    <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+
+
     <div class="card">
       <div class="card-header ch-alt m-b-20">
         <h2>Επικοινωνία</h2>
@@ -34,14 +35,14 @@
               </div>
             </div>
 
-            {% if message %}
-            <div class="alert alert-success">{{ message }}</div>
-            {% endif %}
+            @if(message)
+              <div class="alert alert-success">{{ message }}</div>
+            @endif
 
           </div>
         </div>
 
       </div>
     </div>
-  {{ form.close() }}
-{% endblock %}
+  </form>
+@endsection

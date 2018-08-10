@@ -1,5 +1,5 @@
-'use strict'
+"use strict";
 
 module.exports = {
-  key: 'AIzaSyDXdzjh4xyiPKCz2iHhQtBnqyw4oLqoZNc'
-}
+  key: "AIzaSyDXdzjh4xyiPKCz2iHhQtBnqyw4oLqoZNc"
+};

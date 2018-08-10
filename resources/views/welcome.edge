@@ -1,17 +1,17 @@
-{% extends 'master' %}
+@layout('master')
 
-{% block content %}
+@section('content')
   <div class="card">
     <div class="card-body">
       <div id="map" class="allmap"></div>
 
-      {% for bar in bars %}
-        <div id="content_{{ bar.get('_id') }}" class="iw-wrap">
-          <a href="{{ bar.slug() }}" class="iw-link">
-            <span class="iw-title">{{ bar.get('title') }}</span>
+      @each(bar in bars)
+        <div id="content_{{ bar._id }}" class="iw-wrap">
+          <a href="{{ bar.slug }}" class="iw-link">
+            <span class="iw-title">{{ bar.title }}</span>
           </a>
         </div>
-      {% endfor %}
+      @endeach
 
       <script>
         function initMap() {
@@ -39,19 +39,19 @@
           map.mapTypes.set('tehgrayz', mapType);
           map.setMapTypeId('tehgrayz');
 
-          {% for bar in bars %}
+          @each(bar in bars)
             var marker = new google.maps.Marker({
               position: {
-                lat: {{ bar.get('position.latitude') | float }},
-                lng: {{ bar.get('position.longitude') | float }},
+                lat: {{ bar.position.latitude }},
+                lng: {{ bar.position.longitude }},
               },
               map: map,
               icon: {
                 url: '/img/pin.png',
                 scaledSize: new google.maps.Size(36, 36),
               },
-              barId: '{{ bar.get('_id') }}',
-              slug: '{{ bar.slug() }}',
+              barId: '{{ bar._id }}',
+              slug: '{{ bar.slug }}',
             });
 
             marker.addListener('click', function() {
@@ -68,28 +68,13 @@
 
               infowindow.open(map, this);
             });
-          {% endfor %}
+          @endeach
         }
       </script>
       <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ googleMapsKey }}&callback=initMap"></script>
     </div>
   </div>
 
+  @include('partials.barsByArea')
 
-  <div class="card">
-    <div class="card-header">
-      <h2>Kαταστήματα στην Αττική</h2>
-    </div>
-    <div class="card-body card-padding">
-      <ul class="list-multicolumn">
-        {% for bar in bars %}
-          <li>
-            <a href="{{ bar.slug() }}">
-              {{ bar.get('title') }}
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
-  </div>
-{% endblock %}
+@endsection

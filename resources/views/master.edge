@@ -3,14 +3,13 @@
   <head>
     <meta charset="utf-8">
 
-    <title>{% if pageTitle %}{{ pageTitle }} - {% endif %}Nargile Bars &amp; Cafes</title>
+    <title>{{ pageTitle ? (pageTitle + ' - '):'' }}Nargile Bars &amp; Cafes</title>
 
-    {% if pageDescription %}
-      <meta name="description" content="{{ pageDescription }}">
-    {% else %}
-      <meta name="description" content="Nargile Bars, Lounges &amp; Cafe's ή κοινώς Ναργιλεδάδικα!">
-    {% endif %}
-
+    @if(pageDescription)
+    <meta name="description" content="{{ pageDescription }}">
+    @else
+    <meta name="description" content="Nargile Bars, Lounges &amp; Cafe's ή κοινώς Ναργιλεδάδικα!">
+    @endif
 
     <!-- Mobile Opts -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -61,13 +60,16 @@
 
     <header id="header" class="clearfix bgm-indigo">
       <ul class="h-inner">
-        <!-- <li class="hi-trigger ma-trigger" data-ma-action="sidebar-open" data-ma-target="#sidebar">
+        <!--
+        <li class="hi-trigger ma-trigger" data-ma-action="sidebar-open" data-ma-target="#sidebar">
           <div class="line-wrap">
             <div class="line top"></div>
             <div class="line center"></div>
             <div class="line bottom"></div>
           </div>
-        </li> -->
+        </li>
+        -->
+
         <li class="hi-logo hidden-xs">
           <a href="/">DISCOVER <strong>NARGILE BARS</strong></a>
         </li>
@@ -77,32 +79,16 @@
 
         <li class="pull-right">
           <ul class="hi-menu">
-            <li class="{% if page === 'welcome' %}active{% endif %}">
+            <li class="{{ page === 'welcome' ? 'active':'' }}">
               <a href="/">
                 <i class="him-icon zmdi zmdi-map visible-xs"></i>
                 <span class="him-label hidden-xs">ΧΑΡΤΗΣ</span>
               </a>
             </li>
-            <li class="{% if page === 'bar' %}active{% endif %} dropdown">
-              <a href="" data-toggle="dropdown">
-                <i class="him-icon zmdi zmdi-store visible-xs"></i>
-                <span class="him-label hidden-xs">ΚΑΤΑΣΤΗΜΑΤΑ</span>
-              </a>
-
-              <ul class="dropdown-menu scrollable">
-                {% for bar in bars %}
-                  <li>
-                    <a href="{{ bar.slug() }}">
-                      {{ bar.get('title') }}
-                    </a>
-                  </li>
-                {% endfor %}
-              </ul>
-            </li>
-            <li class="{% if page === 'about' %}active{% endif %}">
-              <a href="/about">
+            <li class="{{ page === 'contact' ? 'active':'' }}">
+              <a href="/contact">
                 <i class="him-icon zmdi zmdi-local-library visible-xs"></i>
-                <span class="him-label hidden-xs">ΑΝΑΚΑΛΥΨΕ</span>
+                <span class="him-label hidden-xs">ΕΠΙΚΟΙΝΩΝΙΑ</span>
               </a>
             </li>
           </ul>
@@ -114,7 +100,7 @@
 
       <section id="content" class="content-alt">
         <div class="container">
-          {% block content %}{% endblock %}
+          @!section('content')
         </div>
       </section>
     </section>
@@ -123,56 +109,12 @@
       Handcrafted with ♥ in Athens &copy; 2017 Nargile Bars
 
       <ul class="f-menu">
-        <li><a href="/about">Ανακάλυψε τον Ναργιλέ</a></li>
+        <li><a href="https://www.facebook.com/nargilebars">Βρες μας στο Facebook</a></li>
         <li>-</li>
         <li><a href="/contact">Επικοινωνία</a></li>
       </ul>
     </footer>
 
-    <!-- Older IE warning message -->
-    <!--[if lt IE 9]>
-      <div class="ie-warning">
-        <h1 class="c-white">Warning!!</h1>
-        <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
-        <div class="iew-container">
-          <ul class="iew-download">
-            <li>
-              <a href="http://www.google.com/chrome/">
-                <img src="img/browsers/chrome.png" alt="">
-                <div>Chrome</div>
-              </a>
-            </li>
-            <li>
-              <a href="https://www.mozilla.org/en-US/firefox/new/">
-                <img src="img/browsers/firefox.png" alt="">
-                <div>Firefox</div>
-              </a>
-            </li>
-            <li>
-              <a href="http://www.opera.com">
-                <img src="img/browsers/opera.png" alt="">
-                <div>Opera</div>
-              </a>
-            </li>
-            <li>
-              <a href="https://www.apple.com/safari/">
-                <img src="img/browsers/safari.png" alt="">
-                <div>Safari</div>
-              </a>
-            </li>
-            <li>
-              <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
-                <img src="img/browsers/ie.png" alt="">
-                <div>IE (New)</div>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <p>Sorry for the inconvenience!</p>
-      </div>
-    <![endif]-->
-
-    <!-- Javascript Libraries -->
     <script src="/vendors/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
@@ -190,11 +132,6 @@
     <script src="/vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
     <script src="/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js"></script>
 
-    <!-- Placeholder for IE9 -->
-    <!--[if IE 9 ]>
-      <script src="/vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
-    <![endif]-->
-
     <script src="/js/app.js"></script>
   </body>
-  </html>
+</html>

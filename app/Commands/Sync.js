@@ -1,78 +1,60 @@
 "use strict";
 
-const Command = use("Command");
+const { Command } = use("@adonisjs/ace");
 const got = use("got");
-const Bar = use("App/Model/Bar");
-const Mongorito = use("mongorito");
 const slug = use("slug");
+const Bar = use("App/Models/Bar");
 
 class Sync extends Command {
-  /**
-   * signature defines the requirements and name
-   * of command.
-   *
-   * @return {String}
-   */
-  get signature() {
+  static get signature() {
     return "sync {url}";
   }
 
-  /**
-   * description is the little helpful information displayed
-   * on the console.
-   *
-   * @return {String}
-   */
-  get description() {
+  static get description() {
     return "Sync bars from an external resource";
   }
 
-  /**
-   * handle method is invoked automatically by ace, once your
-   * command has been executed.
-   *
-   * @param  {Object} args    [description]
-   * @param  {Object} options [description]
-   */
-  *handle(args, options) {
+  handle(args) {
     let newBars = 0;
-
-    this.info(`Requesting ${args.url}`);
-
-    const response = yield got(args.url);
-    const res = JSON.parse(response.body);
 
     slug.charmap["Θ"] = "TH";
     slug.charmap["θ"] = "th";
     slug.charmap["Ξ"] = "KS";
     slug.charmap["ξ"] = "ks";
 
-    const s = {
+    const slugSchema = {
       lowercase: true,
       charmap: slug.charmap
     };
 
-    this.info(`Identified ${res.data.length} bars`);
+    this.info(`Requesting ${args.url}`);
 
-    for (let bar of res.data) {
-      bar.slug = `${slug(bar.address.region, s)}/${slug(
-        bar.address.area,
-        s
-      )}/${slug(bar.title, s)}`.toLowerCase();
+    got(args.url).then((res) => {
+      res = JSON.parse(res.body);
 
-      const barCheck = yield Bar.where("key", bar.key).findOne();
+      this.info(`Identified ${res.data.length} bars`);
 
-      if (!barCheck) {
-        newBars++;
-        const newBar = new Bar(bar);
-        yield newBar.save();
-      }
-    }
+      res.data.forEach((bar) => {
+        const region = slug(bar.address.region, slugSchema);
+        const area = slug(bar.address.area, slugSchema);
+        const shop = slug(bar.title, slugSchema);
 
-    Mongorito.disconnect();
+        bar.slug = `${region}/${area}/${shop}`.toLowerCase();
 
-    this.info(`Added ${newBars} new bars`);
-    this.info(`Finished syncing data`);
+        Bar.where({ key: bar.key })
+          .findOne()
+          .then((check) => {
+            console.log("check", check);
+            if (!check) {
+              newBars++;
+              Bar.create(bar);
+            }
+          });
+      });
+
+      this.info(`Added ${newBars} new bars`);
+      this.info(`Finished syncing data`);
+    });
   }
 }
 

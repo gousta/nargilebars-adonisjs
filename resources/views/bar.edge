@@ -1,15 +1,15 @@
-{% extends 'master' %}
+@layout('master')
 
-{% block content %}
+@section('content')
   <div class="card">
     <div class="card-header">
-      <h2>{{ bar.get('title') }}
+      <h2>{{ bar.title }}
         <small>
-          <i class="zmdi zmdi-pin"></i> &nbsp;&nbsp;{{ bar.address() }}<br/>
+          <i class="zmdi zmdi-pin"></i> &nbsp;&nbsp;{{ bar.fullAddress() }}<br/>
 
-          {% if bar.get('phone') %}
-          <i class="zmdi zmdi-phone"></i> &nbsp;<a href="tel:{{ bar.get('phone') }}">{{ bar.get('phone') }}</a>
-          {% endif %}
+          @if(bar.phone)
+          <i class="zmdi zmdi-phone"></i> &nbsp;<a href="tel:{{ bar.phone }}">{{ bar.phone }}</a>
+          @endif
         </small>
       </h2>
 
@@ -32,8 +32,8 @@
             }
           ];
           var position = {
-            lat: {{ bar.get('position.latitude') | float }},
-            lng: {{ bar.get('position.longitude') | float }},
+            lat: {{ bar.position.latitude }},
+            lng: {{ bar.position.longitude }},
           }
           // console.log(position);
           var map = new google.maps.Map(document.getElementById('map'), {
@@ -63,20 +63,5 @@
     </div>
   </div>
 
-  <div class="card">
-    <div class="card-header">
-      <h2>Περισσότερα καταστήματα</h2>
-    </div>
-    <div class="card-body card-padding">
-      <ul class="list-multicolumn">
-        {% for bar in bars %}
-          <li>
-            <a href="{{ bar.slug() }}">
-              {{ bar.get('title') }}
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
-  </div>
-{% endblock %}
+  @include('partials.barsByArea')
+@endsection

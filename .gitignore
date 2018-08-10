@@ -1,6 +1,14 @@
+# Node modules
 node_modules
-storage
-!.gitkeep
+
+# Adonis directory for storing tmp files
+tmp
+
+# Environment variables, never commit this file
 .env
+
+# The development sqlite file
+database/development.sqlite
+
 npm-debug.log
 npm-f3-install.sh

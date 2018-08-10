@@ -1,0 +1,23 @@
+<div class="card">
+  <div class="card-header">
+    <h2>Καταστήματα ανα περιοχή</h2>
+  </div>
+
+  <div class="card-body card-padding">
+    <div class="row">
+      @each(area in barsByArea)
+        <div class="col-xs-12 m-t-2">
+          <div class="c-black f-500">{{ area.area }}</div>
+          <ul class="list-multicolumn">
+            @each(bar in area.bars)
+              <li>
+                <a href="{{ bar.url() }}">
+                  {{ bar.title }}
+                </a>
+              </li>
+            @endeach
+          </ul>
+        </div>
+      @endeach
+  </div>
+</div>
