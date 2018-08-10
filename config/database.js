@@ -9,11 +9,11 @@ module.exports = {
   mongodb: {
     connectionString: Env.get("DB_CONNECTION_STRING", null),
     connection: {
-      host: Env.get("DB_HOST", "localhost"),
+      host: Env.get("DB_HOST", "127.0.0.1"),
       port: Env.get("DB_PORT", 27017),
-      user: Env.get("DB_USER", "admin"),
+      user: Env.get("DB_USER", ""),
       pass: Env.get("DB_PASSWORD", ""),
-      database: Env.get("DB_DATABASE", "adonis"),
+      database: Env.get("DB_DATABASE", "nargilebars"),
       options: {
         // All options can be found at http://mongoosejs.com/docs/connections.html
       },
