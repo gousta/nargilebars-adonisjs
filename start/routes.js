@@ -55,15 +55,12 @@ Route.get("/contact", async ({ view }) => {
   });
 });
 
-Route.post("/contact", async ({ view }) => {
-  console.log("CONTACT_REQUEST", JSON.stringify(request.all()));
+Route.post("/contact", async ({ view, request }) => {
+  console.log("NARGILEBARS\\CONTACT", JSON.stringify(request.all()));
 
   return view.render("contact", {
     page: "contact",
-    bars: await Bar.find(),
-    barsByArea: groupByArea(bars),
-    message:
-      "Το μήνυμα σας στάλθηκε. Θα προσπαθήσουμε να απαντήσουμε εντός μιας εβδομάδας."
+    message: "Το μήνυμα σας στάλθηκε. Θα σας απαντήσουμε σύντομα."
   });
 });
 
