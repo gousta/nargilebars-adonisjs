@@ -56,7 +56,7 @@ Route.get("/contact", async ({ view }) => {
 });
 
 Route.post("/contact", async ({ view, request }) => {
-  console.log("nargilebars::contact", JSON.stringify(request.all()));
+  console.log("nargilebars->contact", JSON.stringify(request.all()));
 
   return view.render("contact", {
     page: "contact",
