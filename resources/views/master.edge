@@ -60,7 +60,6 @@
 
     <header id="header" class="clearfix bgm-indigo">
       <ul class="h-inner">
-        <!--
         <li class="hi-trigger ma-trigger" data-ma-action="sidebar-open" data-ma-target="#sidebar">
           <div class="line-wrap">
             <div class="line top"></div>
@@ -68,7 +67,6 @@
             <div class="line bottom"></div>
           </div>
         </li>
-        -->
 
         <li class="hi-logo hidden-xs">
           <a href="/">DISCOVER <strong>NARGILE BARS</strong></a>
@@ -87,7 +85,7 @@
             </li>
             <li class="{{ page === 'contact' ? 'active':'' }}">
               <a href="/contact">
-                <i class="him-icon zmdi zmdi-local-library visible-xs"></i>
+                <i class="him-icon zmdi zmdi-email visible-xs"></i>
                 <span class="him-label hidden-xs">ΕΠΙΚΟΙΝΩΝΙΑ</span>
               </a>
             </li>
@@ -98,11 +96,29 @@
 
     <section id="main">
 
-      <section id="content" class="content-alt">
+      <aside id="sidebar" class="sidebar">
+        <ul class="main-menu">
+          @each(area in barsByArea)
+            <li class="sub-menu {{ bar.address.area == area.area ? 'active toggled':'' }}">
+              <a href="" class="p-l-2" data-ma-action="submenu-toggle"> {{ area.area || '-' }}</a>
+              <ul>
+                @each(_bar in area.bars)
+                  <li class="{{ bar.slug == _bar.slug ? 'active':'' }}">
+                    <a class="p-l-3" href="{{ _bar.url() }}">{{ _bar.title }}</a>
+                  </li>
+                @endeach
+              </ul>
+            </li>
+          @endeach
+        </ul>
+      </aside>
+
+      <section id="content">
         <div class="container">
           @!section('content')
         </div>
       </section>
+
     </section>
 
     <footer id="footer">
@@ -133,5 +149,14 @@
     <script src="/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js"></script>
 
     <script src="/js/app.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        var $target = $('#sidebar .main-menu li.active');
+
+        $('#sidebar').stop().animate({
+          'scrollTop': $target.offset().top - 120
+        }, 150, 'swing');
+      });
+    </script>
   </body>
 </html>

@@ -3,25 +3,12 @@
 const Route = use("Route");
 const Config = use("Config");
 const Bar = use("App/Models/Bar");
-const _ = use("lodash");
-
-const groupByArea = (bars) => {
-  return _.sortBy(
-    _.map(_.groupBy(bars, "address.area"), (v, area) => ({
-      area: area,
-      bars: v
-    })),
-    "area"
-  );
-};
 
 Route.get("/", async ({ view }) => {
-  const bars = await Bar.find();
-
   return view.render("welcome", {
     page: "welcome",
-    bars: bars,
-    barsByArea: groupByArea(bars),
+    bars: global._Bars,
+    barsByArea: global._BarsByArea,
     googleMapsKey: Config.get("googlemaps.key")
   });
 });
@@ -34,8 +21,6 @@ Route.get("/discover/:region/:area/:key", async ({ params, view }) => {
     return view.render("errors.404");
   }
 
-  const bars = await Bar.find();
-
   return view.render("bar", {
     page: "bar",
     pageTitle: `${bar.get("title")} @ ${bar.address.area}`,
@@ -43,15 +28,17 @@ Route.get("/discover/:region/:area/:key", async ({ params, view }) => {
       bar.title
     }, ${bar.fullAddress()} - Ναργιλεδάδικα, Cafes, Bars, Lounges`,
     bar: bar,
-    bars: bars,
-    barsByArea: groupByArea(bars),
+    bars: global._Bars,
+    barsByArea: global._BarsByArea,
     googleMapsKey: Config.get("googlemaps.key")
   });
 });
 
 Route.get("/contact", async ({ view }) => {
   return view.render("contact", {
-    page: "contact"
+    page: "contact",
+    bars: global._Bars,
+    barsByArea: global._BarsByArea
   });
 });
 
@@ -60,6 +47,8 @@ Route.post("/contact", async ({ view, request }) => {
 
   return view.render("contact", {
     page: "contact",
+    bars: global._Bars,
+    barsByArea: global._BarsByArea,
     message: "Το μήνυμα σας στάλθηκε. Θα σας απαντήσουμε σύντομα."
   });
 });
