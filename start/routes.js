@@ -24,9 +24,7 @@ Route.get("/discover/:region/:area/:key", async ({ params, view }) => {
   return view.render("bar", {
     page: "bar",
     pageTitle: `${bar.get("title")} @ ${bar.address.area}`,
-    pageDescription: `Κατάστημα ${
-      bar.title
-    }, ${bar.fullAddress()} - Ναργιλεδάδικα, Cafes, Bars, Lounges`,
+    pageDescription: `Μαθε τα πάντα για το κατάστημα ναργιλέ ${bar.title} στην περιοχή ${bar.address.area} και δες reviews ή φωτογραφίες. Ανακάλυψε ακόμα περισσότερα μαγαζία με ναργιλέ στο nargilebars.gr`,
     bar: bar,
     bars: global._Bars,
     barsByArea: global._BarsByArea,
@@ -53,7 +51,7 @@ Route.post("/contact", async ({ view, request }) => {
   });
 });
 
-Route.group("api_v1", function() {
+Route.group("api_v1", function () {
   Route.get("/bar", async ({ response }) => {
     const bars = await Bar.find();
 
