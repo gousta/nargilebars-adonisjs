@@ -39,6 +39,11 @@ class Bar extends BaseModel {
     const { latitude, longitude } = this.position;
     return `http://maps.google.com/maps?q=${latitude},${longitude}`;
   }
+
+  lastUpdated() {
+    console.log(this.updated_at);
+    return this.updated_at;
+  }
 }
 
 module.exports = Bar.buildModel("Bar");

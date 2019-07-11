@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>{{ url }}{{ route('/') }}</loc>
+    <lastmod>{{ bootAt }}</lastmod>
+    <priority>1.0</priority>
+  </url>
+  @each(bar in bars)
+  <url>
+    <loc>{{ bar.url() }}</loc>
+    <lastmod>{{ bootAt }}</lastmod>
+    <priority>0.8</priority>
+  </url>
+  @endeach
+</urlset>

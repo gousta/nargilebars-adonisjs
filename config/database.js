@@ -15,6 +15,7 @@ module.exports = {
       pass: Env.get("DB_PASSWORD", ""),
       database: Env.get("DB_DATABASE", "nargilebars"),
       options: {
+        useNewUrlParser: true,
         // All options can be found at http://mongoosejs.com/docs/connections.html
       },
       debug: false

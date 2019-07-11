@@ -32,6 +32,14 @@ Route.get("/discover/:region/:area/:key", async ({ params, view }) => {
   });
 });
 
+Route.get("/sitemap.xml", async ({ view }) => {
+  return view.render("sitemap", {
+    page: "sitemap",
+    bars: global._Bars,
+    bootAt: global._bootAt.toISOString(),
+  });
+});
+
 Route.get("/contact", async ({ view }) => {
   return view.render("contact", {
     page: "contact",

@@ -1,3 +1,4 @@
+const moment = require('moment');
 const { hooks } = require("@adonisjs/ignitor");
 const _ = require("lodash");
 
@@ -11,6 +12,9 @@ const groupBarsByArea = bars =>
   );
 
 hooks.after.providersBooted(() => {
+
+  global._bootAt = moment();
+
   const Bar = use("App/Models/Bar");
 
   Bar.find()
