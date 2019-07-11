@@ -9118,7 +9118,7 @@ h1 small, .h1 small, h2 small, .h2 small, h3 small, .h3 small, h4 small, .h4 sma
 }
 
 .sub-menu>a:after {
-  content: "\f2fc";
+  content: "\f273";
   -webkit-transform: scale(0);
   -ms-transform: scale(0);
   -o-transform: scale(0);
@@ -9126,7 +9126,7 @@ h1 small, .h1 small, h2 small, .h2 small, h3 small, .h3 small, h4 small, .h4 sma
 }
 
 .sub-menu.toggled>a:before {
-  content: "\f278";
+  content: "\f2f9";
   -webkit-transform: scale(0);
   -ms-transform: scale(0);
   -o-transform: scale(0);
@@ -9134,7 +9134,7 @@ h1 small, .h1 small, h2 small, .h2 small, h3 small, .h3 small, h4 small, .h4 sma
 }
 
 .sub-menu.toggled>a:after {
-  content: "\f273";
+  content: "\f2fc";
   -webkit-transform: scale(1);
   -ms-transform: scale(1);
   -o-transform: scale(1);
